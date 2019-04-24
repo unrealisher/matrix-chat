@@ -8,7 +8,6 @@
     "@types/react": "16.8.14",
     "@types/react-dom": "16.8.4",
     "@types/ws": "^6.0.1",
-    "express": "^4.16.4",
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.11",
     "react": "^16.8.6",
