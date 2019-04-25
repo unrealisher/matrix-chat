@@ -10,7 +10,7 @@ const App = (): JSX.Element => {
   const ref = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:8000");
+    const ws = new WebSocket(location.origin.replace(/^http/, "ws"));
     if (ws) setWebSocket(ws);
     ws.onopen = () => {
       setOpen("CONNECTED");
