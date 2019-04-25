@@ -16,12 +16,15 @@
 }
 
 .label {
+  width: 100%;
+  display: flex;
   margin-top: auto;
   align-self: flex-start;
   font-size: 25px;
 }
 
 .input {
+  flex-grow: 1;
   background-color: transparent;
   border:none;
   font-size: 25px;
