@@ -1,11 +1,29 @@
-const WebSocket = require("ws");
+const express = require("express");
+const http = require("http");
+const path = require("path");
+const cors = require("cors");
+const WebSocketServer = require("ws").Server;
 
-const app = new WebSocket.Server({ port: 8000 });
+const port = process.env.PORT || 8000;
 
-app.on("connection", ws => {
+const app = express();
+
+app.use(express.static(path.resolve("../build")));
+app.use(cors());
+
+app.get("/", (req, res) => {
+  res.sendFile(path.resolve("../build/index.html"));
+});
+
+const server = http.createServer(app);
+server.listen(port);
+
+const wss = new WebSocketServer({ server: server });
+
+wss.on("connection", ws => {
   ws.on("message", message => {
-    app.clients.forEach(client => {
-      if (client.readyState === WebSocket.OPEN) {
+    wss.clients.forEach(client => {
+      {
         client.send(message);
       }
     });
